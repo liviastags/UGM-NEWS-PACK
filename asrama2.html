@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Leaflet Control Plugin - Routingtoaddress</title>
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" integrity="sha512-puBpdR0798OZvTTbP4A8Ix/l+A4dHDD0DGqYW6RQ+9jxkRFclaxxQb/SJAWZfWAkuyeQUytO7+7N4QKrDh+drA==" crossorigin=""/>
+        <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet.js" integrity="sha512-nMMmRyTVoLYqjP9hrbed9S+FzjZHW5gY1TWCHA5ckwXZBadntCNs8kEqAWdrb9O7rxbCaA4lKTIWjDXZxflOcA==" crossorigin=""></script>
+        <link rel="stylesheet" href="LeafletControlRoutingtoaddress.css" />
+        <script src="places.js"></script>
+        <script src="LeafletControlRoutingtoaddress.js"></script>
+
+    <style>
+        /* Tampilan peta fullscreen */
+        html,
+        body,
+        #map {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+    
+    <div id="map"></div>
+    <div style="height: 400px" id="mapid"></div>
+<script>
+    
+   
+        /* Initial Map */
+        var map = L.map('map').setView([-7.776103525469512, 110.37608097510133], 15); //lat, long, zoom
+
+        /* Tile Basemap */
+        var basemap1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="DIVSIG UGM" target="_blank">DIVSIG UGM</a>' //menambahkan nama//
+        });
+
+        var basemap2 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri | <a href="Latihan WebGIS" target="_blank">DIVSIG UGM</a>'
+        });
+
+        var basemap3 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri | <a href="Lathan WebGIS" target="_blank">DIVSIG UGM</a>'
+        });
+
+        var basemap4 = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptiles.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+        });
+
+        basemap1.addTo(map);
+
+        // Definisikan ikon kustom
+        var customIcon = L.icon({
+            iconUrl: 'https://www.freepnglogos.com/uploads/lokasi-logo-png/lokasi-logo-map-pin-klaris-apartments-8.png', // Ganti URL_GAMBAR_ICON dengan URL gambar ikon Anda
+            iconSize: [50, 50], // Atur ukuran ikon
+            iconAnchor: [16, 32], // Anchor point ikon (titik yang menunjukkan lokasi)
+            popupAnchor: [0, -32] // Anchor point untuk popup (jika Anda menggunakan popup)
+        });
+
+        var Icon2 = L.icon({
+            iconUrl: 'https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/location-pin-icon.png', // Ganti URL_GAMBAR_ICON dengan URL gambar ikon Anda
+            iconSize: [35, 35], // Atur ukuran ikon
+            iconAnchor: [16, 32], // Anchor point ikon (titik yang menunjukkan lokasi)
+            popupAnchor: [0, -32] // Anchor point untuk popup (jika Anda menggunakan popup)
+        });
+
+        /* Image Legend */
+        L.Control.Legend = L.Control.extend({
+            onAdd: function (map) {
+                var img = L.DomUtil.create('img');
+                img.src = 'assets/img/legend/asrama1.jpg';
+                img.style.width = '250px';
+                return img;
+            }
+        });
+
+        L.control.Legend = function (opts) {
+            return new L.Control.Legend(opts);
+        }
+
+        L.control.Legend({ position: 'bottomleft' }).addTo(map);
+
+        /* Layer Marker */
+        var marker1 = L.marker([-7.769793573594738, 110.38603520386293], { draggable: true, icon: customIcon });
+        marker1.addTo(map);
+        marker1.bindPopup("Asrama Ratnaningsih Bulaksumur");
+
+        var marker2 = L.marker([-7.762758478649819, 110.3773504540301], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaningsih Kinanti 2&3");
+
+        var marker2 = L.marker([-7.763579314228133, 110.37720889635979], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaningsih Kinanti 1");
+
+        var marker2 = L.marker([-7.771413252833578, 110.3726806675248], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaningsih Sendowo");
+
+        var marker2 = L.marker([-7.779541492232888, 110.37742216752474], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaninsih Sagan");
+
+        var marker2 = L.marker([-7.766627322662816, 110.38729249451363], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Darmaputera Santren");
+
+        var marker2 = L.marker([-7.760142586274598, 110.38590842269372]);
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Darmaputera Karanggayam");
+
+        var marker2 = L.marker([-7.795218462525315, 110.38283179636001]);
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Darmaputera Baciro");
+
+        var marker2 = L.marker([-7.771383452043902, 110.37775467107024], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Universitas Gadjah Mada");
+
+        var marker2 = L.marker([-7.774750848938431, 110.37452252352527], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Sekolah Vokasi UGM");
+
+        var marker2 = L.marker([-7.765886287797674, 110.37382943975173], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Teknik UGM");
+
+        var marker2 = L.marker([-7.769436838414273, 110.37402255880811], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("FKKMK UGM");
+
+        /* Control Layer */
+        var baseMaps = {
+            "OpenStreetMap": basemap1,
+            "Esri World Street": basemap2,
+            "Esri Imagery": basemap3,
+            "Stadia Dark Mode": basemap4
+        };
+
+        var overlayMaps = {
+            // "Gedung B DIVSIG UGM": marker1,
+            // "RS.Akademik UGM": marker2,
+        };
+
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map)
+
+        /* Scale Bar */
+        L.control.scale({
+            maxWidth: 150, position: 'bottomright'
+        }).addTo(map);
+
+        var mymap = L.map('mapid').setView([50.27264, 7.26469], 13);
+
+    L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png')
+            .addTo(mymap);
+
+    L.leafletControlRoutingtoaddress({ 
+            position: 'topright',
+            placeholder: 'Bitte geben Sie hier Ihre Adresse ein.',
+            errormessage: 'Adresse nicht gültig.',
+            target: 'Sonnenhang 23, Kehrig, Rheinland-Pfalz, Deutschland'
+        
+    }).addTo(mymap);
+
+
+
+    </script>
+
+</body>
+
+</html>
