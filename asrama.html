@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!-- Metadata -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="author" content="DIVSIG UGM">
+    <meta name="description" content="leaflet basic">
+
+    <!-- Judul pada tab browser -->
+    <title>Persebaran Asrama UGM</title>
+
+    <!-- Leaflet CSS Library -->
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.5.1/dist/leaflet.css">
+
+    <!-- Tab browser icon -->
+    <link rel="icon" type="image/x-icon" href="http://luk.staff.ugm.ac.id/logo/UGM/Resmi/Warna.gif">
+
+    <!-- Leaflet Measure CSS Library -->
+    <link rel="stylesheet" href="assets/plugins/leaflet-measure/leaflet-measure.css" />
+
+    <style>
+        /* Tampilan peta fullscreen */
+        html,
+        body,
+        #map {
+            height: 100%;
+            width: 100%;
+            margin: 0px;
+        }
+    </style>
+
+</head>
+
+<body>
+
+    <!-- Leaflet JavaScript Library -->
+    <script src="https://unpkg.com/leaflet@1.5.1/dist/leaflet.js"></script>
+
+
+    <div id="map"></div>
+
+    <script src="https://unpkg.com/leaflet@1.7.1/dist/leaflet.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <!-- Search JavaScript Library -->
+    <script src="assets/plugins/leaflet-search/leaflet-search.js"></script>
+
+
+    <!-- Leaflet Measure JavaScript Library -->
+    <script src="assets/plugins/leaflet-measure/leaflet-measure.js"></script>
+
+    <script>
+        /* Initial Map */
+        var map = L.map('map').setView([-7.776103525469512, 110.37608097510133], 15); //lat, long, zoom
+
+        /* Tile Basemap */
+        var basemap1 = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+            attribution: '<a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> | <a href="DIVSIG UGM" target="_blank">DIVSIG UGM</a>' //menambahkan nama//
+        });
+
+        var basemap2 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Street_Map/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri | <a href="Latihan WebGIS" target="_blank">DIVSIG UGM</a>'
+        });
+
+        var basemap3 = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+            attribution: 'Tiles &copy; Esri | <a href="Lathan WebGIS" target="_blank">DIVSIG UGM</a>'
+        });
+
+        var basemap4 = L.tileLayer('https://tiles.stadiamaps.com/tiles/alidade_smooth_dark/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://stadiamaps.com/">Stadia Maps</a>, &copy; <a href="https://openmaptile s.org/">OpenMapTiles</a> &copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors'
+        });
+
+        basemap1.addTo(map);
+
+        // Definisikan ikon kustom
+        var customIcon = L.icon({
+            iconUrl: 'https://www.freepnglogos.com/uploads/lokasi-logo-png/lokasi-logo-map-pin-klaris-apartments-8.png', // Ganti URL_GAMBAR_ICON dengan URL gambar ikon Anda
+            iconSize: [50, 50], // Atur ukuran ikon
+            iconAnchor: [16, 32], // Anchor point ikon (titik yang menunjukkan lokasi)
+            popupAnchor: [0, -32] // Anchor point untuk popup (jika Anda menggunakan popup)
+        });
+
+        var Icon2 = L.icon({
+            iconUrl: 'https://uxwing.com/wp-content/themes/uxwing/download/location-travel-map/location-pin-icon.png', // Ganti URL_GAMBAR_ICON dengan URL gambar ikon Anda
+            iconSize: [25, 25], // Atur ukuran ikon
+            iconAnchor: [16, 32], // Anchor point ikon (titik yang menunjukkan lokasi)
+            popupAnchor: [0, -32] // Anchor point untuk popup (jika Anda menggunakan popup)
+        });
+
+        /* Image Legend */
+        L.Control.Legend = L.Control.extend({
+            onAdd: function (map) {
+                var img = L.DomUtil.create('img');
+                img.src = 'assets/img/legend/asrama1.jpg';
+                img.style.width = '250px';
+                return img;
+            }
+        });
+
+        L.control.Legend = function (opts) {
+            return new L.Control.Legend(opts);
+        }
+
+        L.control.Legend({ position: 'bottomleft' }).addTo(map);
+
+        /* Layer Marker */
+        var marker1 = L.marker([-7.769793573594738, 110.38603520386293], { draggable: true, icon: customIcon });
+        marker1.addTo(map);
+        marker1.bindPopup("Asrama Ratnaningsih Bulaksumur");
+
+        var marker2 = L.marker([-7.762758478649819, 110.3773504540301], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaningsih Kinanti 2&3");
+
+        var marker2 = L.marker([-7.763579314228133, 110.37720889635979], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaningsih Kinanti 1");
+
+        var marker2 = L.marker([-7.771413252833578, 110.3726806675248], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaningsih Sendowo");
+
+        var marker2 = L.marker([-7.779541492232888, 110.37742216752474], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Ratnaninsih Sagan");
+
+        var marker2 = L.marker([-7.766627322662816, 110.38729249451363], { draggable: true, icon: customIcon });
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Darmaputera Santren");
+
+        var marker2 = L.marker([-7.760142586274598, 110.38590842269372]);
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Darmaputera Karanggayam");
+
+        var marker2 = L.marker([-7.795218462525315, 110.38283179636001]);
+        marker2.addTo(map);
+        marker2.bindPopup("Asrama Darmaputera Baciro");
+
+        var marker2 = L.marker([-7.771383452043902, 110.37775467107024], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Universitas Gadjah Mada");
+
+        var marker2 = L.marker([-7.774750848938431, 110.37452252352527], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Sekolah Vokasi UGM");
+
+        var marker2 = L.marker([-7.765886287797674, 110.37382943975173], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Teknik UGM");
+
+        var marker2 = L.marker([-7.768705128067459, 110.37469249763346], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Kedokteran, Kesehatan Masyarakat, dan Keperawatan UGM");
+
+        var marker2 = L.marker([-7.770602802464291, 110.37477432422511], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Kedokteran Gigi UGM");
+
+        var marker2 = L.marker([-7.771429463819044, 110.37968635359819], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Rumpun SOSHUM UGM");
+
+        var marker2 = L.marker([-7.766596798942462, 110.3766100552136], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Matematika dan Ilmu Pengetahuan Alam UGM");
+
+        var marker2 = L.marker([-7.767934794475434, 110.38097225385772], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Kehutanan dan Pertanian UGM");
+
+        var marker2 = L.marker([-7.767874659928727, 110.38505375467778], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Fakultas Kedokteran Hewan dan Peternakan UGM");
+
+        var marker2 = L.marker([-7.774602158075137, 110.38021361081981], { draggable: true, icon: Icon2 });
+        marker2.addTo(map);
+        marker2.bindPopup("Departemen Ekonomi dan Bisnis SV UGM");
+
+        /* Control Layer */
+        var baseMaps = {
+            "OpenStreetMap": basemap1,
+            "Esri World Street": basemap2,
+            "Esri Imagery": basemap3,
+            "Stadia Dark Mode": basemap4
+        };
+
+        var overlayMaps = {
+            // "Gedung B DIVSIG UGM": marker1,
+            // "RS.Akademik UGM": marker2,
+        };
+
+        L.control.layers(baseMaps, overlayMaps, { collapsed: false }).addTo(map)
+
+        /* Scale Bar */
+        L.control.scale({
+            maxWidth: 150, position: 'bottomright'
+        }).addTo(map);
+        
+/*Plugin Measurement Tool */
+var measureControl = new L.Control.Measure({
+            position: "topleft",
+            primaryLengthUnit: "meters",
+            secondaryLengthUnit: "kilometers",
+            primaryAreaUnit: "hectares",
+            secondaryAreaUnit: "sqmeters",
+            activeColor: "#FF0000",
+            completedColor: "#00FF00",
+        });
+        measureControl.addTo(map);
+
+    </script>
+
+</body>
+
+</html>
