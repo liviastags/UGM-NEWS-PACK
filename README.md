@@ -1,4 +1,3 @@
-<hr>  
 
 <h1>📌 NAMA PRODUK</h1>  
 <p><strong>UGM NEWS-Pack (UGM Newcomer Starter Pack)</strong></p>  
