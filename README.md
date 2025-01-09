@@ -1,6 +1,5 @@
 
-<h1>📌 NAMA PRODUK</h1>  
-<p><strong>UGM NEWS-Pack (UGM Newcomer Starter Pack)</strong></p>  
+<h1>📌 UGM NEWS-Pack (UGM Newcomer Starter Pack)</h1>  
 
 <hr>  
 
@@ -62,6 +61,6 @@ Data tambahan seperti statistik populasi Kabupaten Sleman, yang memiliki jumlah 
 
 <h1>📸 TANGKAPAN LAYAR PENTING PRODUK</h1>  
 <h2>🌟 Landing Page</h2>  
-<p>Tampilan utama aplikasi:</p>  
+<p>Tampilan utama WebGIS:</p>  
 <img src="assets/img/legend/penting1.jpg" alt="Landing Page" width="600">  
 <img src="assets/img/legend/penting2.jpg" alt="Landing Page" width="600">  
